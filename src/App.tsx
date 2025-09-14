@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom'
 import {
   AppBar,
   Box,
@@ -19,7 +20,9 @@ import LedgerTable from './features/ledger/LedgerTable'
 import BalancesGrid from './features/balances/BalancesGrid'
 
 export default function App() {
-  const [tab, setTab] = useState(0)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const tab = location.pathname === '/ledger' ? 1 : location.pathname === '/balances' ? 2 : 0
   const [bootMsg, setBootMsg] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -60,15 +63,22 @@ export default function App() {
           </Box>
         ) : (
           <>
-            <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 2 }}>
+            <Tabs
+              value={tab}
+              onChange={(_, v) => navigate(v === 0 ? '/' : v === 1 ? '/ledger' : '/balances')}
+              sx={{ mb: 2 }}
+            >
               <Tab label="Add Transaction" />
               <Tab label="Ledger" />
               <Tab label="Balances" />
             </Tabs>
 
-            {tab === 0 && <AddTransaction />}
-            {tab === 1 && <LedgerTable />}
-            {tab === 2 && <BalancesGrid />}
+            <Routes>
+              <Route path="/" element={<AddTransaction />} />
+              <Route path="/ledger" element={<LedgerTable />} />
+              <Route path="/balances" element={<BalancesGrid />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
           </>
         )}
       </Container>
