@@ -12,6 +12,7 @@ export async function seedIfEmpty(db: Database) {
     ["1010", "Bank – USD", "ASSET", null, "USD"],
     ["1011", "Bank – EUR", "ASSET", null, "EUR"],
     ["1100", "Crypto Assets (Control)", "ASSET", null, null],
+    ["2000", "Loans from DEX", "LIABILITY", null, null],
     ["3000", "Owner Contributions", "EQUITY", null, null],
     ["3100", "Owner Draws", "EQUITY", null, null],
     ["3200", "Retained Earnings", "EQUITY", null, null],
