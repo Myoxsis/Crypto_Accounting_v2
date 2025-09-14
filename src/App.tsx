@@ -13,7 +13,7 @@ import {
 import { ensureDbReady } from './db/sqlite'
 import { runMigrations } from './db/migrations'
 import { seedIfEmpty } from './db/seed'
-import FiatDepositForm from './features/transactions/FiatDepositForm'
+import AddTransaction from './features/transactions/AddTransaction'
 import LedgerTable from './features/ledger/LedgerTable'
 import BalancesGrid from './features/balances/BalancesGrid'
 
@@ -52,7 +52,7 @@ export default function App() {
           <Tab label="Balances" />
         </Tabs>
 
-        {tab === 0 && <FiatDepositForm />}
+        {tab === 0 && <AddTransaction />}
         {tab === 1 && <LedgerTable />}
         {tab === 2 && <BalancesGrid />}
       </Container>
