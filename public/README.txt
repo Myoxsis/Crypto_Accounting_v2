@@ -1,0 +1,1 @@
+Place sql-wasm.wasm here. The postinstall script should copy it automatically.
